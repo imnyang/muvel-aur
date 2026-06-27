@@ -1,6 +1,6 @@
 pkgname=muvel
 pkgver=2.10.6
-pkgrel=2
+pkgrel=3
 pkgdesc="A storytelling tool for everyone"
 arch=('x86_64')
 url="https://github.com/KimuSoft/muvel-public"
