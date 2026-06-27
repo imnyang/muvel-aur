@@ -4,7 +4,10 @@ pkgrel=4
 pkgdesc="A storytelling tool for everyone"
 arch=('x86_64')
 url="https://github.com/KimuSoft/muvel-public"
-license=('MIT')
+license=(
+  'Unlicense'
+  'custom:muvel'
+)
 depends=(
   'cairo'
   'desktop-file-utils'
