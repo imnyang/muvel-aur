@@ -1,6 +1,6 @@
 pkgname=muvel
 pkgver=2.10.6
-pkgrel=1
+pkgrel=2
 pkgdesc="A storytelling tool for everyone"
 arch=('x86_64')
 url="https://github.com/KimuSoft/muvel-public"
@@ -12,4 +12,8 @@ source_x86_64=("https://github.com/KimuSoft/muvel-public/releases/download/v2.10
 sha256sums_x86_64=("/xIbMNgT0ZV4F225JNHotyfkE/WSIsfbBwMjGpXjxO4=")
 package() {
   tar -xvf data.tar.gz -C "${pkgdir}"
+  sed -i \
+    -e 's/^Exec=muvel$/Exec=muvel %u/' \
+    -e 's/^MimeType=\(.*[^;]\)$/MimeType=\1;/' \
+    "${pkgdir}/usr/share/applications/Muvel.desktop"
 }
