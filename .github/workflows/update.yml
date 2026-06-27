@@ -1,0 +1,53 @@
+name: Update Muvel
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-muvel
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Make update script executable
+        run: chmod +x scripts/update.sh
+
+      - name: Update PKGBUILD from upstream sources
+        run: ./scripts/update.sh
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if git diff --quiet -- PKGBUILD; then
+            echo "changed=false" >>"$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >>"$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update muvel to ${{ steps.meta.outputs.version }}"
+          title: "Update Muvel package"
+          body: |
+            Automated update of the Muvel AUR package based on the upstream sources.json.
+
+            This PR updates the package version and release checksum in PKGBUILD.
+          branch: "update-muvel"
+          delete-branch: true
