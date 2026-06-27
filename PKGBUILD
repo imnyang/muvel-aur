@@ -22,8 +22,9 @@ source_x86_64=("https://github.com/KimuSoft/muvel-public/releases/download/v2.10
 sha256sums_x86_64=("ff121b30d813d19578176db924d1e8b727e413f59222c7db0703231a95e3c4ee")
 package() {
   tar -xvf data.tar.gz -C "${pkgdir}"
+
   sed -i \
-    -e 's/^Exec=muvel$/Exec=muvel %u/' \
-    -e 's/^MimeType=\(.*[^;]\)$/MimeType=\1;/' \
+    -e 's|^Exec=.*|Exec=muvel %u|' \
+    -e 's|^MimeType=.*|MimeType=application/vnd.muvel.novel+json;application/vnd.muvel.episode+json;application/vnd.muvel.wiki+json;application/vnd.muvel.memo+json;x-scheme-handler/muvel;|' \
     "${pkgdir}/usr/share/applications/Muvel.desktop"
 }
