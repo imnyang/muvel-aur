@@ -22,7 +22,7 @@ depends=(
 options=('!strip' '!debug')
 install=${pkgname}.install
 source_x86_64=("https://github.com/KimuSoft/muvel-public/releases/download/v2.10.6/Muvel_2.10.6_amd64.deb")
-sha256sums_x86_64=("ff121b30d813d19578176db924d1e8b727e413f59222c7db0703231a95e3c4ee")
+sha256sums_x86_64=("/xIbMNgT0ZV4F225JNHotyfkE/WSIsfbBwMjGpXjxO4=")
 package() {
   tar -xvf data.tar.gz -C "${pkgdir}"
 
