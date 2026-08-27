@@ -1,5 +1,5 @@
 pkgname=muvel
-pkgver=2.11.3
+pkgver=2.11.4
 pkgrel=4
 pkgdesc="A storytelling tool for everyone"
 arch=('x86_64')
@@ -21,8 +21,8 @@ depends=(
 )
 options=('!strip' '!debug')
 install=${pkgname}.install
-source_x86_64=("https://github.com/KimuSoft/muvel-public/releases/download/v2.11.3/Muvel_2.11.3_amd64.deb")
-sha256sums_x86_64=("3c31f9c5860b6a5d697d938b28c1d3e7f15a98a101a17e9c8cf5384c7cbbcaed")
+source_x86_64=("https://github.com/KimuSoft/muvel-public/releases/download/v2.11.4/Muvel_2.11.4_amd64.deb")
+sha256sums_x86_64=("6703a978ea2d2bb86f06d9ab6f3dcc37ac2aead51b9bcc33fd7e575b099e63b1")
 package() {
   tar -xvf data.tar.gz -C "${pkgdir}"
 
